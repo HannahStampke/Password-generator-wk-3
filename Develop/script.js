@@ -5,11 +5,18 @@ var options;
 var amount;
 var passwordMinLength = 8;
 var passwordMaxLength = 128;
+
+// Password option confirmations
+var confirmLowerCase;
+var confirmUpperCase;
+var confirmNumeric;
+var confirmSpecialChar;
+
 // Password options
-var lowerCase = "abcdefghijklmnopqrstuvwxyz";
-var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numeric = "1234567890";
-var specialChar = "'!@#$%^&*()_+-=~`{}[]|\:;<>,.?/'";
+lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+numeric = "1234567890";
+specialChar = "'!@#$%^&*()_+-=~`{}[]|\:;<>,.?/'";
 
 
 // Function to generate password
@@ -24,10 +31,10 @@ function generatePassword() {
   }
   // If length is correct, offer the password options
   else {
-    lowerCase = confirm("Will this contain lower case letters?");
-    upperCase = confirm("Will this contain upper case letters?");
-    numeric = confirm("Will this contain numbers?");
-    specialChar = confirm("Will this contain special characters?");
+    confirmLowerCase = confirm("Will this contain lower case letters?");
+    confirmUpperCase = confirm("Will this contain upper case letters?");
+    confirmNumeric = confirm("Will this contain numbers?");
+    confirmSpecialChar = confirm("Will this contain special characters?");
   }
   // Store password character amount locally
   localStorage.setItem("amount", enter)
@@ -108,28 +115,13 @@ var password = [];
  for (var i = 0; i < enter; i++) {
   var pickChoices = choices[Math.floor(Math.random() * choices.length)];
   password.push(pickChoices);
-}
-// This joins the password array and converts it to a string
-// Worked with a tutor to incorporate this option
-var ps = password.join("");
-UserInput(ps);
-return ps;
-}
-// This puts the password value into the textbox
-// Changed function input to use textcontent
-function UserInput(password) {
-document.getElementById("password").textContent = password;
+  console.log("password: " + password);
 }
 
-
-/* All password options random selection
-for (var i = 0; i < enter; i++) {
-  var selectCharacters = options[Math.floor(Math.random() * options.amount)];
-  password.push(selectCharacters);
-}
 
 // Write password to the #password input
 function writePassword() {
+
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
