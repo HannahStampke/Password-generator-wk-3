@@ -39,16 +39,47 @@ function generatePassword() {
   else if (lowerCase && upperCase && numeric) {
     options = lowerCase.concat(upperCase, numeric);
   }
-  else if (lowercase && upperCase && specialChar); {
+  else if (lowercase && upperCase && specialChar) {
     options = lowerCase.concat(upperCase, specialChar);
   }
-  else if (lowercase && numeric && specialChar); {
+  else if (lowercase && numeric && specialChar) {
     options = lowerCase.concat(numeric, specialChar);
   }
-  else if (upperCase && numeric && specialChar); {
+  else if (upperCase && numeric && specialChar) {
     options = upperCase.concat(numeric, specialChar);
   }
-  
+  // If 2 password options are chosen
+  else if (lowerCase && upperCase) {
+    options = lowerCase.concat(upperCase);
+  }
+  else if (lowerCase && numeric) {
+    options = lowerCase.concat(numeric);
+  }
+  else if (lowerCase && specialChar) {
+    options = lowerCase.concat(specialChar);
+  }
+  else if (upperCase && numeric) {
+    options = upperCase.concat(numeric);
+  }
+  else if (upperCase && specialChar) {
+    options = upperCase.concat(specialChar);
+  }
+  else if (numeric && specialChar) {
+    options = numeric.concat(specialChar);
+  }
+  // If 1 password option is chosen
+  else if (lowerCase) {
+    options = alert("Woah, that won't be secure! Please pick another option!")
+  }
+  else if (upperCase) {
+    options = alert("Woah, that won't be secure! Please pick another option!")
+  }
+  else if (numeric) {
+    options = alert("Woah, that won't be secure! Please pick another option!")
+  }
+  else if (specialChar) {
+    options = alert("Woah, that won't be secure! Please pick another option!")
+  }
 }
 
 
