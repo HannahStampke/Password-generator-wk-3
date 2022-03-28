@@ -2,6 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 var enter;
 var options;
+var amount;
 var passwordMinLength = 8;
 var passwordMaxLength = 128;
 // Password options
@@ -10,11 +11,12 @@ var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numeric = "1234567890";
 var specialChar = "'!@#$%^&*()_+-=~`{}[]|\:;<>,.?/'";
 
+
 // Function to generate password
 function generatePassword() {
   enter = parseInt(prompt("How many characters? (8-128)"));
   if (!enter) {
-    alert("Please enter a number");
+    alert("That's cheeky! Please enter a number...");
   }
   // Checks that password is the correct length
   else if (enter < passwordMinLength || enter > passwordMaxLength) {
@@ -26,7 +28,10 @@ function generatePassword() {
     upperCase = confirm("Will this contain upper case letters?");
     numeric = confirm("Will this contain numbers?");
     specialChar = confirm("Will this contain special characters?");
-  };
+  }
+  // Store password character amount locally
+  localStorage.setItem("amount", enter)
+
   // If NO password options are chosen
   if (!lowerCase && !upperCase && !numeric && !specialChar) {
     options = alert("Well it has to contain something!");
@@ -69,19 +74,59 @@ function generatePassword() {
   }
   // If 1 password option is chosen
   else if (lowerCase) {
-    options = alert("Woah, that won't be secure! Please pick another option!")
+    options = lowerCase;
   }
   else if (upperCase) {
-    options = alert("Woah, that won't be secure! Please pick another option!")
+    options = upperCase;
   }
   else if (numeric) {
-    options = alert("Woah, that won't be secure! Please pick another option!")
+    options = numeric;
   }
   else if (specialChar) {
-    options = alert("Woah, that won't be secure! Please pick another option!")
+    options = specialChar;
   }
+  /* ---------- (OUT OF ACTION) ----------
+  If 1 password option is chosen SECOND OPTION 
+  else if (lowerCase && !upperCase && !numeric && !specialChar) {
+    options = alert("Woah, that won't be secure! Pick at least 2!");
+  }
+  else if (!lowerCase && upperCase && !numeric && !specialChar) {
+    options = alert("Woah, that won't be secure! Pick at least 2!");
+  }
+  else if (!lowerCase && !upperCase && numeric && !specialChar) {
+    options = alert("Woah, that won't be secure! Pick at least 2!");
+  }
+  else if (!lowerCase && !upperCase && !numeric && specialChar) {
+    options = alert("Wsoah, that won't be secure! Pick at least 2!");
+  } */
 }
 
+// Array placeholder for generated password length
+var password = [];
+ 
+ // Random selection for all variables: 
+ for (var i = 0; i < enter; i++) {
+  var pickChoices = choices[Math.floor(Math.random() * choices.length)];
+  password.push(pickChoices);
+}
+// This joins the password array and converts it to a string
+// Worked with a tutor to incorporate this option
+var ps = password.join("");
+UserInput(ps);
+return ps;
+}
+// This puts the password value into the textbox
+// Changed function input to use textcontent
+function UserInput(password) {
+document.getElementById("password").textContent = password;
+}
+
+
+/* All password options random selection
+for (var i = 0; i < enter; i++) {
+  var selectCharacters = options[Math.floor(Math.random() * options.amount)];
+  password.push(selectCharacters);
+}
 
 // Write password to the #password input
 function writePassword() {
