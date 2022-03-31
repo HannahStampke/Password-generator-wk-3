@@ -92,20 +92,6 @@ function generatePassword() {
   else if (specialChar) {
     options = specialChar;
   }
-  /* ---------- (OUT OF ACTION) ----------
-  If 1 password option is chosen SECOND OPTION 
-  else if (lowerCase && !upperCase && !numeric && !specialChar) {
-    options = alert("Woah, that won't be secure! Pick at least 2!");
-  }
-  else if (!lowerCase && upperCase && !numeric && !specialChar) {
-    options = alert("Woah, that won't be secure! Pick at least 2!");
-  }
-  else if (!lowerCase && !upperCase && numeric && !specialChar) {
-    options = alert("Woah, that won't be secure! Pick at least 2!");
-  }
-  else if (!lowerCase && !upperCase && !numeric && specialChar) {
-    options = alert("Wsoah, that won't be secure! Pick at least 2!");
-  } */
 }
 
 // Array placeholder for generated password length
@@ -113,19 +99,18 @@ var password = [];
  
  // Random selection for all variables: 
  for (var i = 0; i < enter; i++) {
-  var pickChoices = choices[Math.floor(Math.random() * choices.length)];
+  var pickChoices = choices[Math.floor(Math.random() * choices.amount)];
   password.push(pickChoices);
-  console.log("password: " + password);
 }
-
 
 // Write password to the #password input
 function writePassword() {
 
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
+  password = generatePassword();
+  passwordText = document.querySelector("#password");
+  localStorage.getItem("amount", enter);
+  passwordText.enter = password;
+  alert(password);
 
 }
 
