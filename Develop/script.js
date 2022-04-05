@@ -21,6 +21,8 @@ specialChar = "'!@#$%^&*()_+-=~`{}[]|\:;<>,.?/'";
 
 // Function to generate password
 function generatePassword() {
+  // Array placeholder for generated password length
+  var password = [];
   enter = parseInt(prompt("How many characters? (8-128)"));
   if (!enter) {
     alert("That's cheeky! Please enter a number...");
@@ -43,9 +45,12 @@ function generatePassword() {
   if (!lowerCase && !upperCase && !numeric && !specialChar) {
     options = alert("Well it has to contain something!");
   }
+
+
   // If ALL password options are chosen
   else if (lowerCase && upperCase && numeric && specialChar) {
     options = lowerCase.concat(upperCase, numeric, specialChar);
+    console.log(lowerCase);
   }
   // If 3 password options are chosen
   else if (lowerCase && upperCase && numeric) {
@@ -92,20 +97,20 @@ function generatePassword() {
   else if (specialChar) {
     options = specialChar;
   }
-}
 
-// Array placeholder for generated password length
-var password = [];
- 
- // Random selection for all variables: 
+   // Random selection for all variables: 
  for (var i = 0; i < enter; i++) {
   var pickChoices = choices[Math.floor(Math.random() * choices.amount)];
   password.push(pickChoices);
 }
+  return password.join('');
+}
+ 
+
 
 // Write password to the #password input
 function writePassword() {
-
+  document.getElementById("password");
   password = generatePassword();
   passwordText = document.querySelector("#password");
   localStorage.getItem("amount", enter);
