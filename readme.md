@@ -1,21 +1,56 @@
-In this assignment, we were expected to make a password generator by using the pre-made html and css provided.
+# Password Generator
 
-The password criteria was:
 
-GIVEN I need a new, secure password
-WHEN I click the button to generate a password
-THEN I am presented with a series of prompts for password criteria
-WHEN prompted for password criteria
-THEN I select which criteria to include in the password
-WHEN prompted for the length of the password
-THEN I choose a length of at least 8 characters and no more than 128 characters
-WHEN asked for character types to include in the password
-THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-WHEN I answer each prompt
-THEN my input should be validated and at least one character type should be selected
-WHEN all prompts are answered
-THEN a password is generated that matches the selected criteria
-WHEN the password is generated
-THEN the password is either displayed in an alert or written to the page
+### Live URL: 
+### Website Screenshots:
+![Main page of Password Generator] ()
 
-Sadly, my code is not returning a password and, after hours of research and tutoring, I still cannot get this to work.
+## User Story 
+```md
+AS AN employee with access to sensitive data
+I WANT to randomly generate a password that meets certain criteria
+SO THAT I can create a strong password that provides greater security
+```
+
+## Description
+
+This password generator prompts the user to create a strong, randomised password between 8 and 128 characters.
+It allows to user to choose if they want to include lowercase, uppercase, numbers, and symbols in their password.
+After generating, the password appears in a text box and is able to be copied over as text.
+
+
+# Table of Contents
+
+- [Usage](#usage)
+
+- [Applications](#applications)
+
+- [Questions](#questions)
+
+
+# Usage
+
+Steps to access and use the Code Quiz
+
+- Navigate to the Password Generator URL (https://hannahstampke.github.io/code-quiz/).
+- Once you have landed on the main page, click the Generate Password button to begin  the prompts.
+- Follow the prompts!
+
+
+# Applications
+- HTML
+- JavaScript
+- CSS
+- Bootstrap
+- GitHub
+
+
+# Questions 
+For any questions and comments please reach out to me through email at:
+- hannah.stampke@gmail.com
+
+
+# Links
+To view my other projects visit:
+- [Hannah](https://github.com/HannahStampke)
+

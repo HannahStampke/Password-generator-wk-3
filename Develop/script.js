@@ -1,123 +1,71 @@
-// Assignment Code
 var generateBtn = document.querySelector("#generate");
-var enter;
-var options;
-var amount;
-var passwordMinLength = 8;
-var passwordMaxLength = 128;
 
-// Password option confirmations
-var confirmLowerCase;
-var confirmUpperCase;
-var confirmNumeric;
-var confirmSpecialChar;
+// Options to add
+var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var symbol = ["!", "%", "&", ",", "*", "+", "-", ".", "/", "<", ">", "?", "~"];
 
-// Password options
-lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-numeric = "1234567890";
-specialChar = "'!@#$%^&*()_+-=~`{}[]|\:;<>,.?/'";
+var allChar = [];
 
 
-// Function to generate password
 function generatePassword() {
-  // Array placeholder for generated password length
-  var password = [];
-  enter = parseInt(prompt("How many characters? (8-128)"));
-  if (!enter) {
-    alert("That's cheeky! Please enter a number...");
-  }
-  // Checks that password is the correct length
-  else if (enter < passwordMinLength || enter > passwordMaxLength) {
-    enter = parseInt(prompt("Please choose between 8 and 128"));
-  }
-  // If length is correct, offer the password options
-  else {
-    confirmLowerCase = confirm("Will this contain lower case letters?");
-    confirmUpperCase = confirm("Will this contain upper case letters?");
-    confirmNumeric = confirm("Will this contain numbers?");
-    confirmSpecialChar = confirm("Will this contain special characters?");
-  }
-  // Store password character amount locally
-  localStorage.setItem("amount", enter)
-
-  // If NO password options are chosen
-  if (!lowerCase && !upperCase && !numeric && !specialChar) {
-    options = alert("Well it has to contain something!");
-  }
-
-
-  // If ALL password options are chosen
-  else if (lowerCase && upperCase && numeric && specialChar) {
-    options = lowerCase.concat(upperCase, numeric, specialChar);
-    console.log(lowerCase);
-  }
-  // If 3 password options are chosen
-  else if (lowerCase && upperCase && numeric) {
-    options = lowerCase.concat(upperCase, numeric);
-  }
-  else if (lowercase && upperCase && specialChar) {
-    options = lowerCase.concat(upperCase, specialChar);
-  }
-  else if (lowercase && numeric && specialChar) {
-    options = lowerCase.concat(numeric, specialChar);
-  }
-  else if (upperCase && numeric && specialChar) {
-    options = upperCase.concat(numeric, specialChar);
-  }
-  // If 2 password options are chosen
-  else if (lowerCase && upperCase) {
-    options = lowerCase.concat(upperCase);
-  }
-  else if (lowerCase && numeric) {
-    options = lowerCase.concat(numeric);
-  }
-  else if (lowerCase && specialChar) {
-    options = lowerCase.concat(specialChar);
-  }
-  else if (upperCase && numeric) {
-    options = upperCase.concat(numeric);
-  }
-  else if (upperCase && specialChar) {
-    options = upperCase.concat(specialChar);
-  }
-  else if (numeric && specialChar) {
-    options = numeric.concat(specialChar);
-  }
-  // If 1 password option is chosen
-  else if (lowerCase) {
-    options = lowerCase;
-  }
-  else if (upperCase) {
-    options = upperCase;
-  }
-  else if (numeric) {
-    options = numeric;
-  }
-  else if (specialChar) {
-    options = specialChar;
-  }
-
-   // Random selection for all variables: 
- for (var i = 0; i < enter; i++) {
-  var pickChoices = choices[Math.floor(Math.random() * choices.amount)];
-  password.push(pickChoices);
+    // How many characters
+    var conLength = window.prompt(
+        "How many characters do you want your password to be?"
+    );
+    // Length of password between 8-128
+    if (conLength < 8 || conLength > 128) {
+        alert("That's cheeky! I said between 8 and 128...");
+    } else {
+        // Add upper and lowercase
+        var upperChoice = confirm("Would you like to use uppercase characters?");
+        if (upperChoice) {
+            allChar = allChar.concat(upperCase)
+        };
+        var lowerChoice = confirm("Would you like to use lowercase characters?");
+        if (lowerChoice) {
+            allChar = allChar.concat(lowerCase)
+        };
+        // Add Symbols
+        var symbolChoice = confirm("Would you like to use symbols?");
+        if (symbolChoice) {
+            allChar = allChar.concat(symbol)
+        };
+        // Add numbers
+        var numberChoice = confirm("Would you like to use numbers?");
+        if (numberChoice) {
+            allChar = allChar.concat(number)
+        };
+        if (
+            lowerChoice === false &&
+            upperChoice === false &&
+            symbolChoice === false &&
+            numberChoice === false
+        ) {
+            // Select something
+            alert("Well, you have to pick something!");
+            generatePassword();
+        }
+    }
+    // math.floor math.random to create password
+    var password = "";
+    console.log(allChar)
+    for (let i = 0; i < conLength; i++) {
+        password += allChar[Math.floor(Math.random() * allChar.length)]
+    }
+    //return password
+    return password
 }
-  return password.join('');
-}
- 
 
 
-// Write password to the #password input
 function writePassword() {
-  document.getElementById("password");
-  password = generatePassword();
-  passwordText = document.querySelector("#password");
-  localStorage.getItem("amount", enter);
-  passwordText.enter = password;
-  alert(password);
-
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
 }
 
-// Add event listener to generate button
+
+
+// Event listener generate button
 generateBtn.addEventListener("click", writePassword);
