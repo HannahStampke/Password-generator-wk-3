@@ -3,7 +3,8 @@
 
 ### Live URL: https://hannahstampke.github.io/Password-generator-wk-3/
 ### Website Screenshots:
-![Main page of Password Generator](./Assets/images/)
+![Main page of Password Generator](./Assets/images/Password-generator.png)
+
 ## User Story 
 ```md
 AS AN employee with access to sensitive data
